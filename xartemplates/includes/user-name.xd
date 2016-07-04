@@ -1,0 +1,85 @@
+<table class="xar-alt-outline" cellpadding="1" cellspacing="0">
+    <tr>
+        <th><xar:mlstring>Name</xar:mlstring></th>
+        <th><a href="javascript:document.addcontact.submit();" onclick="javascript:document.addcontact.action.value=1;"><xar:mlstring>Address</xar:mlstring></a></th>
+        <th><a href="javascript:document.addcontact.submit();" onclick="javascript:document.addcontact.action.value=2;"><xar:mlstring>Contact</xar:mlstring></a></th>
+<xar:if condition="$addrow gt 0">
+        <th><a href="javascript:document.addcontact.submit();" onclick="javascript:document.addcontact.action.value=3;">#$custom_tab#</a></th>
+</xar:if>
+        <th><a href="javascript:document.addcontact.submit();" onclick="javascript:document.addcontact.action.value=4;"><xar:mlstring>Note</xar:mlstring></a></th>
+    </tr>
+    <tr>
+        <td colspan="#$numcols#">
+<!--        <td colspan="11">  -->
+        <table width="100%" border="0" cellspacing="0" cellpadding="5">
+        <xar:if condition="xarModGetVar(__ADDRESSBOOK__,'use_prefix')">
+          <tr>
+            <td align="right" valign="middle"><xar:mlstring>Prefix/Title</xar:mlstring>:</td>
+            <td align="left" valign="middle">
+                <select name="prfx" id="prfx">
+                  <option value="0"><xar:mlstring>None</xar:mlstring></option>
+                <xar:foreach in="$prfxs" value="$prefix">
+                    <xar:if condition="$prefix['id'] ne $prfx">
+                  <option value="#$prefix['id']#">#$prefix['name']#</option>
+                    <xar:else />
+                  <option selected="selected" value="#$prefix['id']#">#$prefix['name']#</option>
+                    </xar:if>
+                </xar:foreach>
+        </select>
+            </td>
+        </tr>
+            <xar:else />
+                <input type="hidden" name="prfx" id="prfx" value="#$prfx#" />
+            </xar:if>
+          <tr>
+            <td align="right" valign="middle"><xar:mlstring>Last Name</xar:mlstring>:</td>
+            <td align="left" valign="middle">
+              <input name="lname" type="text" id="lname" value="#$lname#" size="60" maxlength="100" />
+            </td>
+            </tr>
+          <tr>
+            <td align="right" valign="middle"><xar:mlstring>First Name</xar:mlstring>:</td>
+            <td align="left" valign="middle"><input name="fname" type="text" id="fname" value="#$fname#" size="60" maxlength="100" /></td>
+            </tr>
+          <tr>
+            <td align="right" valign="middle"><xar:mlstring>Title</xar:mlstring>:</td>
+            <td align="left" valign="middle"><input name="title" type="text" id="title" value="#$title#" size="60" maxlength="100" /></td>
+            </tr>
+          <tr>
+            <td align="right" valign="middle"><xar:mlstring>Company</xar:mlstring>:</td>
+            <td align="left" valign="middle"><input name="company" type="text" id="company" value="#$company#" size="60" maxlength="100" /></td>
+            </tr>
+          <tr>
+            <td align="right" valign="middle">&nbsp;</td>
+            <td align="left" valign="middle">
+                    <input name="autoCompanyFill" id="autoCompanyFill" type="hidden" value="0" />
+                    <select name="comp_lookup" id="comp_lookup" onchange="this.form.action.value=1;this.form.autoCompanyFill.value=1;this.form.submit();">
+                    <xar:foreach in="$companies" value="$company">
+                      <option value="#$company['id']#">#$company['name']#</option>
+                    </xar:foreach>
+                    </select>
+
+            </td>
+            </tr>
+            <xar:if condition="xarModGetVar(__ADDRESSBOOK__,'use_img')">
+            <tr>
+              <td align="right" valign="middle"><xar:mlstring>Image</xar:mlstring>:</td>
+              <td align="left" valign="middle">
+                <select name="img" id="img">
+                    <xar:foreach in="$imgFiles" value="$imgFile">
+                        <xar:if condition="$imgFile['id'] ne $img">
+                  <option value="#$imgFile['id']#">#$imgFile['name']#</option>
+                        <xar:else />
+                  <option selected="selected" value="#$imgFile['id']#">#$imgFile['name']#</option>
+                        </xar:if>
+                    </xar:foreach>
+                </select>
+              </td>
+            </tr>
+            <xar:else />
+                <input type="hidden" name="img" id="img" value="" />
+            </xar:if>
+      </table>
+        </td>
+    </tr>
+</table>

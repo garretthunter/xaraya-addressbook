@@ -1,0 +1,8 @@
+<xar:template compile="false" file="mod-title" type="module" />
+<div class="xar-alt-outline" style="padding: 4em; text-align:center; ">
+<strong>#$infoMsg#</strong>
+<br />
+<br />
+<a href="#xarModURL(__ADDRESSBOOK__, 'user', 'viewall',$menuValues)#">[#$backToListTEXT#]</a>
+</div>
+<xar:template compile="false" file="mod-footer" type="module" />

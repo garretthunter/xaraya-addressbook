@@ -1,0 +1,161 @@
+<!-- START TITLE BAR -->
+<xar:template compile="false" file="mod-admin-title" type="module" />
+<!-- END TITLE BAR -->
+<xar:set name="$modInfo">xarModGetInfo(xarModGetIDFromName(__ADDRESSBOOK__))</xar:set>
+  <div class="xar-mod-body">
+      <h2><xar:mlstring>Configure Custom Fields</xar:mlstring></h2>
+<!-- START WARN DISPLAY -->
+      <div style="text-align:center;">
+        <xar:template compile="false" file="mod-warn-msg" type="module" />
+      </div>
+<!-- END WARN DISPLAY -->
+      <div class="xar-norm-outline" style="padding:.25em;">
+      <div style="margin:0em 1em; text-align:center;">
+        <div style="width:60%;">
+        <form name="modcustfield" id="modcustfield" method="post" action="#xarModURL(__ADDRESSBOOK__,'admin','modifycustomfields')#" enctype="application/x-www-form-urlencoded">
+        <div id="tableContainer">
+		  <table style="border:0em; padding:.5em;">
+          <tr>
+            <td><xar:mlstring>Custom Tab Name:</xar:mlstring></td>
+            <td>
+			<input type="text" name="custom_tab" id="custom_tab" value="#$custom_tab#" size="30" maxlength="60" tabindex="23" />
+			</td>
+          </tr>
+             <tr>
+               <td style="text-align:left; padding:.25em;">
+                 <label for="textareawidth"><xar:mlstring>Width of TEXTAREA fields</xar:mlstring></label>
+               </td>
+               <td style="text-align:left; padding:.25em;">
+                 <input type="text" name="textareawidth" id="textareawidth" value="#$textareawidth#" size="4" maxlength="4" tabindex="24" /> <xar:mlstring>(min = 4, max = 100)</xar:mlstring>
+               </td>
+             </tr>
+        </table>
+		<table style="width:60%; border:0em; padding:.5em;">
+            <tr>
+            <th>
+              <label class="xar-mod-title">
+                <acronym title="#xarML('Check this option to display this field on the search results page')#" >
+                <xar:mlstring>Display</xar:mlstring>
+                </acronym>
+              </label>
+            </th>
+            <th>
+              <label class="xar-mod-title">
+                <acronym title="#xarML('This will be the text that displays in the column heading on the main search page. Leave blank to use the Form Label.')#" >
+                <xar:mlstring>Display Label</xar:mlstring>
+                </acronym>
+              </label>
+            </th>
+            <th>
+              <label class="xar-mod-title">
+                <acronym title="#xarML('This text is used as the label on the custom field form entry page.')#" >
+                <xar:mlstring>Form Label</xar:mlstring>
+                </acronym>
+              </label>
+            </th>
+            <th>
+              <label class="xar-mod-title"><xar:mlstring>Data Type</xar:mlstring></label>
+            </th>
+            <th>
+              <label class="xar-mod-title"><xar:mlstring>Delete</xar:mlstring></label>
+            </th>
+            <th>
+              <label class="xar-mod-title"><xar:mlstring>Order</xar:mlstring></label>
+            </th>
+          </tr>
+<xar:comment>Logic for displaying existing custom fields</xar:comment>
+<xar:if condition="isset($custfields)">
+  <xar:foreach in="$custfields" value="$cf">
+          <tr>
+            <td style="text-align:center; padding:.25em;">
+            <input type="hidden" name="id[]" id="id[]" value="#$cf['nr']#" />
+    <xar:if condition="!strstr($cf['custType'],_AB_CUSTOM_BLANKLINE) and !strstr($cf['custType'],_AB_CUSTOM_HORIZ_RULE)">
+            <xar:if condition="$cf['custDisplay']">
+              <input type="checkbox" name="custDisplay[]" id="custDisplay[]" checked="checked" value="#$cf['nr']#"/>
+            <xar:else />
+              <input type="checkbox" name="custDisplay[]" id="custDisplay[]" value="#$cf['nr']#" />
+            </xar:if>
+    <xar:else />
+              <input type="hidden" name="custDisplay[]" id="custDisplay[]" value="" />
+    </xar:if>
+            </td>
+            <td style="text-align:center; padding:.25em;">
+              <input name="custShortLabel[]" id="custShortLabel[]" type="text" value="#$cf['custShortLabel']#" size="20" maxlength="30" />
+            </td>
+            <td style="text-align:center; padding:.25em;">
+              <input name="custLabel[]" id="custLabel[]" type="text" value="#$cf['custLabel']#" size="20" maxlength="30" />
+            </td>
+            <td style="text-align:center; padding:.25em;">
+              <select name="custType[]" id="custType[]" size="1">
+              <xar:foreach in="$datatypes" value="$datatype">
+                <xar:if condition="$datatype['id'] ne $cf['custType']">
+                <option value="#$datatype['id']#">#$datatype['name']#</option>
+                <xar:else />
+                <option value="#$datatype['id']#" selected="selected">#$datatype['name']#</option>
+                </xar:if>
+              </xar:foreach>
+              </select>
+            </td>
+            <td style="text-align:center; padding:.25em;">
+            <xar:if condition="$cf['nr'] gt 4">
+              <input type="checkbox" name="del[]" id="del[]" value="#$cf['nr']#"/>
+            <xar:else />
+              <input type="hidden" name="del[]" id="del[]" value=""/>&nbsp;
+            </xar:if>
+            </td>
+            <td style="text-align:center; padding:.25em;">
+            <xar:if condition="$cf['position'] eq 1">
+              <a href="javascript:document.modcustfield.submit();" onclick="javascript:document.modcustfield.decID.value=#$cf['nr']#;"><img src="modules/#$modInfo['directory']#/xarimages/down.gif" alt="#xarVarPrepHTMLDisplay(_AB_DOWN)#" border="0" hspace="4" /></a>
+            <xar:else />
+              <xar:if condition="$cf['position'] eq sizeof($custfields)">
+              <a href="javascript:document.modcustfield.submit();" onclick="javascript:document.modcustfield.incID.value=#$cf['nr']#;"><img src="modules/#$modInfo['directory']#/xarimages/up.gif" alt="#xarVarPrepHTMLDisplay(_AB_UP)#" border="0" hspace="4" /></a>
+              <xar:else />
+              <a href="javascript:document.modcustfield.submit();" onclick="javascript:document.modcustfield.incID.value=#$cf['nr']#;"><img src="modules/#$modInfo['directory']#/xarimages/up.gif" alt="#xarVarPrepHTMLDisplay(_AB_UP)#" border="0" hspace="4" /></a><a href="javascript:document.modcustfield.submit();" onclick="javascript:document.modcustfield.decID.value=#$cf['nr']#;"><img src="modules/#$modInfo['directory']#/xarimages/down.gif" alt="#xarVarPrepHTMLDisplay(_AB_DOWN)#" border="0" hspace="4" /></a>
+              </xar:if>
+            </xar:if>
+            </td>
+          </tr>
+    </xar:foreach>
+  </xar:if>
+<xar:comment>END Logic for displaying existing custom fields</xar:comment>
+<xar:comment>START Logic for displaying new custom field</xar:comment>
+          <tr>
+            <td style="text-align:center; padding:.25em;">
+              <input type="checkbox" name="newDisplay" id="newDisplay" value="1" />
+            </td>
+            <td style="text-align:center; padding:.25em;">
+              <input name="newShortLabel" id="newShortLabel" type="text" size="20" maxlength="30" />
+            </td>
+            <td style="text-align:center; padding:.25em;">
+              <input name="newname" id="newname" type="text" size="20" maxlength="30" />
+            </td>
+            <td style="text-align:center; padding:.25em;">
+              <select name="newtype" id="newtype" size="1">
+              <xar:foreach in="$datatypes" value="$datatype">
+                <option value="#$datatype['id']#">#$datatype['name']#</option>
+              </xar:foreach>
+            </select>
+            </td>
+            <td style="text-align:center; padding:.25em;">
+              &lt;==&nbsp;<xar:mlstring>New</xar:mlstring>
+            </td>
+            <td style="text-align:center; padding:.25em;">&nbsp;
+
+            </td>
+          </tr>
+<xar:comment>END Logic for displaying new custom field</xar:comment>
+        </table>
+        </div>
+        <div style="margin:1em;">
+            <input type="submit" name="btnSubmit" value="#$btnCommitText#" />
+            <input name="authid" type="hidden" id="authid" value="#$authid#" />
+            <input name="incID" type="hidden" id="incID" value="" />
+            <input name="decID" type="hidden" id="decID" value="" />
+            <input name="formSubmit" type="hidden" id="formSubmit" value="1" />
+        </div>
+        </form>
+      </div>
+      </div>
+    </div>
+  </div>
+<xar:template compile="false" file="mod-footer" type="module" />

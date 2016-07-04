@@ -1,0 +1,341 @@
+<!-- START TITLE BAR -->
+<xar:template compile="false" file="mod-admin-title" type="module" />
+<!-- END TITLE BAR -->
+<div class="xar-mod-body">
+  <h2><xar:mlstring>Configuration Settings</xar:mlstring></h2>
+<!-- START WARN DISPLAY -->
+  <div style="text-align:center;">
+    <xar:template compile="false" file="mod-warn-msg" type="module" />
+  </div>
+<!-- END WARN DISPLAY -->
+  <div class="xar-norm-outline" style="padding:.25em;">
+    <form method="post" action="#xarModURL(__ADDRESSBOOK__,'admin','modifyconfig')#">
+<!-- COMMON SETTINGS -->
+<div id="commonSettings" style="margin:.25em;">
+          <div style="text-align:left; margin: 0em 1em;">
+            <h4><xar:mlstring>Common Settings</xar:mlstring></h4>
+          </div>
+          <div style="margin: 0em 1em;">
+            <table style="border:0em; padding:.25em;">
+              <tr>
+                <td style="text-align:left; padding:.25em;">
+                  <label for="abtitle"><xar:mlstring>Title of this Address Book</xar:mlstring></label>
+                </td>
+                <td style="text-align:left; padding:.25em;">
+                  <input type="text" name="abtitle" id="abtitle" value="#$abtitle#" size="30" maxlength="60" tabindex="7" />
+                </td>
+              </tr>
+              <tr>
+                <td style="text-align:left; padding:.25em;">
+                  <label for="custom_tab"><xar:mlstring>Enable Custom Labels?</xar:mlstring></label>
+                </td>
+                <td style="text-align:left; padding:.25em;">
+                  <xar:if condition="$useCustomFields">
+                  <input type="checkbox" name="useCustomFields" id="useCustomFields" value="1" checked="checked" tabindex="23" />
+                  <xar:else />
+                  <input type="checkbox" name="useCustomFields" id="useCustomFields" value="1" tabindex="23" />
+                  </xar:if>
+			    </td>
+              </tr>
+              <tr>
+                <td style="text-align:left; padding:.25em;">
+                  <label for="globalprotect"><xar:mlstring>Personal address book mode</xar:mlstring></label>
+                </td>
+                <td style="text-align:left; padding:.25em;">
+                <xar:if condition="$globalprotect">
+                  <input type="checkbox" name="globalprotect" id="globalprotect" value="1" checked="checked" tabindex="15" />
+                <xar:else />
+                  <input type="checkbox" name="globalprotect" id="globalprotect" value="1" tabindex="15" />
+                </xar:if>
+                </td>
+              </tr>
+              <tr>
+                <td style="text-align:left; padding:.25em;">
+                  <label for="use_prefix"><xar:mlstring>Do you want to use a prefix field?</xar:mlstring></label>
+                </td>
+                <td style="text-align:left; padding:.25em;">
+                <xar:if condition="$use_prefix">
+                  <input type="checkbox" name="use_prefix" id="use_prefix" value="1" checked="checked" tabindex="16" />
+                <xar:else />
+                  <input type="checkbox" name="use_prefix" id="use_prefix" value="1" tabindex="16" />
+                </xar:if>
+                </td>
+              </tr>
+              <tr>
+                <td style="text-align:left; padding:.25em;">
+                  <label for="use_img"><xar:mlstring>Do you want to use images/logos?</xar:mlstring></label>
+                </td>
+                <td style="text-align:left; padding:.25em;">
+                <xar:if condition="$use_img">
+                  <input type="checkbox" name="use_img" id="use_img" value="1" checked="checked" tabindex="17" />
+                <xar:else />
+                  <input type="checkbox" name="use_img" id="use_img" value="1" tabindex="17" />
+                </xar:if>
+                </td>
+              </tr>
+              <tr>
+                <td style="text-align:left; padding:.25em;">
+                  <label for="menu_off"><xar:mlstring>Disable the menu</xar:mlstring></label>
+                </td>
+                <td style="text-align:left; padding:.25em;">
+                  <select name="menu_off" id="menu_off" size="1" tabindex="18">
+                  <xar:foreach in="$menu_off" value="$option">
+                    <xar:if condition="$option['id'] ne $menu_off_selected">
+                    <option value="#$option['id']#">#$option['name']#</option>
+                    <xar:else />
+                    <option value="#$option['id']#" selected="selected">#$option['name']#</option>
+                    </xar:if>
+                  </xar:foreach>
+                  </select>
+                </td>
+              </tr>
+              <tr>
+                <td style="text-align:left; padding:.25em;">
+                  <label for="menu_semi"><xar:mlstring>Disable the second line of the main menu</xar:mlstring></label>
+                </td>
+                <td style="text-align:left; padding:.25em;">
+                  <xar:if condition="$menu_semi">
+                  <input type="checkbox" name="menu_semi" id="menu_semi" value="1" checked="checked" tabindex="19" />
+                  <xar:else />
+                  <input type="checkbox" name="menu_semi" id="menu_semi" value="1" tabindex="19" />
+                  </xar:if>
+                </td>
+              </tr>
+              <tr>
+                <td style="text-align:left; padding:.25em;">
+                  <label for="itemsperpage"><xar:mlstring>Records viewed per page</xar:mlstring></label>
+                </td>
+                <td style="text-align:left; padding:.25em;">
+                  <input type="text" name="itemsperpage" id="itemsperpage" value="#$itemsperpage#" size="4" maxlength="4" tabindex="21" />
+                </td>
+              </tr>
+              <tr>
+                <td style="text-align:left; padding:.25em;">
+                  <label for="hidecopyright"><acronym title="#xarML('Works only on the user pages, notice remains on admin pages')#" ><xar:mlstring>Hide the Copyright and Version Note</xar:mlstring></acronym></label>
+                </td>
+                <td style="text-align:left; padding:.25em;">
+                  <xar:if condition="$hidecopyright">
+                  <input type="checkbox" name="hidecopyright" id="hidecopyright" value="1" checked="checked" tabindex="22" />
+                  <xar:else />
+                  <input type="checkbox" name="hidecopyright" id="hidecopyright" value="1" tabindex="22" />
+                  </xar:if>
+                </td>
+              </tr>
+			</table>
+		</div>
+	</div>
+<!-- SEARCH SETTINGS -->
+        <div id="searchSettings" style="margin:.25em;">
+          <div style="text-align:left; margin: 0em 1em;">
+            <h4><xar:mlstring>Search Settings</xar:mlstring></h4>
+          </div>
+          <div style="margin: 0em 1em;">
+            <table style="border:0em; padding:.25em;">
+              <tr>
+                <td style="text-align:left; padding:.25em;">
+                  <label for="sortdata_1"><xar:mlstring>Default sort order / List View</xar:mlstring></label>
+                </td>
+                <td style="text-align:left; padding:.25em;">
+                  <select name="sortdata_1" id="sortdata_1" size="1" tabindex="8">
+                    <xar:foreach in="$sortdata_1" value="$sortoption">
+                      <xar:if condition="$sortoption['id'] ne $defSortCols[0]">
+                    <option value="#$sortoption['id']#">#$sortoption['name']#</option>
+                      <xar:else />
+                    <option value="#$sortoption['id']#" selected="selected">#$sortoption['name']#</option>
+                      </xar:if> 
+                    </xar:foreach>
+                  </select>
+                  |
+                  <select name="sortdata_2" id="sortdata_2" size="1" tabindex="9">
+                    <xar:foreach in="$sortdata_2" value="$sortoption">
+                      <xar:if condition="$sortoption['id'] ne $defSortCols[1]">
+                    <option value="#$sortoption['id']#">#$sortoption['name']#</option>
+                      <xar:else />
+                    <option value="#$sortoption['id']#" selected="selected">#$sortoption['name']#</option>
+                      </xar:if> 
+                    </xar:foreach>
+                  </select>
+                </td>
+              </tr>
+              <tr>
+                <td style="text-align:left; padding:.25em;">
+                  <label for="sortdata_3"><xar:mlstring>Alternate sortorder / List View</xar:mlstring></label>
+                </td>
+                <td style="text-align:left; padding:.25em;">
+                  <select name="sortdata_3" id="sortdata_3" size="1" tabindex="10">
+                    <xar:foreach in="$sortdata_3" value="$sortoption">
+                      <xar:if condition="$sortoption['id'] ne $altSortCols[0]">
+                    <option value="#$sortoption['id']#">#$sortoption['name']#</option>
+                      <xar:else />
+                    <option value="#$sortoption['id']#" selected="selected">#$sortoption['name']#</option>
+                      </xar:if>
+                    </xar:foreach>
+                  </select>
+                  |
+                  <select name="sortdata_4" id="sortdata_4" size="1" tabindex="11">
+                    <xar:foreach in="$sortdata_4" value="$sortoption">
+                      <xar:if condition="$sortoption['id'] ne $altSortCols[1]">
+                    <option value="#$sortoption['id']#">#$sortoption['name']#</option>
+                      <xar:else />
+                    <option value="#$sortoption['id']#" selected="selected">#$sortoption['name']#</option>
+                      </xar:if>
+                    </xar:foreach>
+                  </select>
+                </td>
+              </tr>
+              <tr>
+                <td style="text-align:left; padding:.25em;">
+                  <label for="name_order"><xar:mlstring>Name display in list view and sort order for name information</xar:mlstring></label>
+                </td>
+                <td style="text-align:left; padding:.25em;">
+                  <select name="name_order" id="name_order" size="1" tabindex="12">
+                    <xar:foreach in="$name_order" value="$option">
+                      <xar:if condition="$option['id'] ne $name_order_selected">
+                    <option value="#$option['id']#">#$option['name']#</option>
+                      <xar:else />
+                    <option value="#$option['id']#" selected="selected">#$option['name']#</option>
+                      </xar:if>
+                    </xar:foreach>
+                  </select>
+                </td>
+              </tr>
+              <tr>
+                <td style="text-align:left; padding:.25em;">
+                  <label for="display_prefix"><xar:mlstring>Display prefix in search results?</xar:mlstring></label>
+                </td>
+                <td style="text-align:left; padding:.25em;">
+                <xar:if condition="$display_prefix">
+                  <input type="checkbox" name="display_prefix" id="display_prefix" value="1" checked="checked" tabindex="16" />
+                <xar:else />
+                  <input type="checkbox" name="display_prefix" id="display_prefix" value="1" tabindex="16" />
+                </xar:if>
+                </td>
+              </tr>
+            </table>
+          </div>
+        </div>
+<!-- REGIONAL SETTINGS -->
+        <div id="regionalSettings" style="margin:.25em;">
+          <div style="text-align:left; margin: 0em 1em;">
+            <h4><xar:mlstring>Regional Settings</xar:mlstring></h4>
+          </div>
+          <div style="margin: 0em 1em;">
+            <table style="border:0em; padding:.25em;">
+              <tr>
+                <td style="text-align:left; padding:.25em;">
+                  <label for="special_chars_1"><xar:mlstring>Special character (<acronym title="Must set Base->Languages and Locales->Default Locale to en_US.iso-8859-1 for this to work. Otherwise simply remove both entries.">Umlauts</acronym>) replacement for sort columns</xar:mlstring></label>
+                </td>
+                <td style="text-align:left; padding:.25em;">
+                  <input type="text" name="special_chars_1" id="special_chars_1" value="#$special_chars_1#" size="12" maxlength="24" tabindex="13" />
+                    =&gt;
+                  <input type="text" name="special_chars_2" id="special_chars_2" value="#$special_chars_2#" size="12" maxlength="24" tabindex="14" /></td>
+              </tr>
+              <tr>
+                <td style="text-align:left; padding:.25em;">
+                  <label for="zipbeforecity"><xar:mlstring>Show zip before city</xar:mlstring></label>
+                </td>
+                <td style="text-align:left; padding:.25em;">
+                  <xar:if condition="$zipbeforecity">
+                  <input type="checkbox" name="zipbeforecity" id="zipbeforecity" value="1" checked="checked" tabindex="20" />
+                  <xar:else />
+                  <input type="checkbox" name="zipbeforecity" id="zipbeforecity" value="1" tabindex="20" />
+                  </xar:if>
+                </td>
+              </tr>
+              <tr>
+                <td style="text-align:left; padding:.25em;">
+                  <label for="dateformat"><xar:mlstring>Format for date entries</xar:mlstring></label>
+                </td>
+                <td style="text-align:left; padding:.25em;">
+                  <select name="dateformat" id="dateformat" size="1" tabindex="25">
+                    <xar:foreach in="$dateformat" value="$option">
+                      <xar:if condition="$option['id'] ne $dateformat_selected">
+                    <option value="#$option['id']#">#$option['name']#</option>
+                      <xar:else />
+                    <option value="#$option['id']#" selected="selected">#$option['name']#</option>
+                      </xar:if>
+                    </xar:foreach>
+                  </select>
+                </td>
+              </tr>
+              <tr>
+                <td style="text-align:left; padding:.25em;">
+                  <label for="numformat"><xar:mlstring>Format for numeric values</xar:mlstring></label>
+                </td>
+                <td style="text-align:left; padding:.25em;">
+                  <select name="numformat" id="numformat" size="1" tabindex="26">
+                <xar:foreach in="$numformat" value="$option">
+                  <xar:if condition="$option['id'] ne $numformat_selected">
+                    <option value="#$option['id']#">#$option['name']#</option>
+                  <xar:else />
+                    <option value="#$option['id']#" selected="selected">#$option['name']#</option>
+                  </xar:if>
+                </xar:foreach>
+                  </select>
+                </td>
+              </tr>
+			</table>
+		</div>
+	</div>
+<!-- QUALITY CONTORL SETTINGS -->
+        <div id="qcSettings" style="margin:.25em;">
+          <div style="margin: 0em 1em;">
+            <h4><xar:mlstring>Quality Control Reporting</xar:mlstring></h4>
+          </div>
+          <div style="margin: 0em 1em;">
+            <table>
+              <tr>
+                <td style="text-align:left; padding:.25em;">
+                  <label for="rptErrAdminFlag"><xar:mlstring>Send error reports to Site Admin?</xar:mlstring></label>
+                </td>
+                <td style="text-align:left; padding:.25em;">
+                <xar:if condition="$rptErrAdminFlag">
+                  <input name="rptErrAdminFlag" type="checkbox" id="rptErrAdminFlag" tabindex="27" value="1" checked="checked" />
+                <xar:else />
+                  <input type="checkbox" name="rptErrAdminFlag" id="rptErrAdminFlag" value="1" tabindex="27" />
+                </xar:if>
+                </td>
+              </tr>
+              <tr>
+                <td style="text-align:left; padding:.25em;">
+                  <label for="rptErrAdminEmail"><xar:mlstring>Alternate Site Admin email address</xar:mlstring></label>
+                </td>
+                <td style="text-align:left; padding:.25em;">
+                  <input name="rptErrAdminEmail" type="text" id="rptErrAdminEmail" value="#$rptErrAdminEmail#" size="30" maxlength="128" tabindex="28" />
+                </td>
+              </tr>
+              <tr>
+                <td style="text-align:left; padding:.25em;">
+                  <label for="rptErrDevFlag">
+                    <acronym title="#xarML('Recommended for quality assurance purposes. Only the contents of the error message are sent.')#" >
+                    <xar:mlstring>Send error reports to AddressBook Quality Control?</xar:mlstring>
+                    </acronym>
+                  </label>
+                </td>
+                <td style="text-align:left; padding:.25em;">
+                <xar:if condition="$rptErrDevFlag">
+                  <input name="rptErrDevFlag" type="checkbox" id="rptErrDevFlag" tabindex="29" value="1" checked="checked" />
+                <xar:else />
+                  <input type="checkbox" name="rptErrDevFlag" id="rptErrDevFlag" value="1" tabindex="29" />
+                </xar:if>
+                </td>
+              </tr>
+            </table>
+          </div>
+          <div style="margin: 0em 1em;">
+            <div style="padding:.5em;">
+                  <xar:mlstring>Quality Control Reports are sent whenever AddressBook catches an error 
+                    that halts user processing. These are typically errors in the module software which should 
+                    be corrected by the development team.</xar:mlstring>
+            </div>
+          </div>
+        </div>
+        <div style="text-align:center; margin:1em;">
+                    <input name="submit" type="submit" tabindex="27" value="#$btnCommitText#" align="middle" />
+                    <input name="authid" type="hidden" id="authid" value="#$authid#" />
+                    <input name="formSubmit" type="hidden" id="formSubmit" value="1" />
+        </div>
+    </form>
+  </div>
+</div>
+<xar:template compile="false" file="mod-footer" type="module" />

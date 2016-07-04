@@ -1,0 +1,7 @@
+<xar:if condition="!empty($abExceptions['abWarnMsg'])">
+<div style="text-align:center; border-width: 1px; border-style: solid; border-color: #B3B3B3; padding: 1px;">
+<xar:foreach in="$abExceptions['abWarnMsg']" value="$warnMsg">
+  <span class="xar-error"><strong>#$warnMsg['text']#</strong></span><br />
+</xar:foreach>
+</div>
+</xar:if>

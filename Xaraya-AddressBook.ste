@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<site>
+<localinfo sitename="Xaraya-AddressBook" ftporrdsserver="FALSE" localroot="D:\WebDesign\addressbook\" imagefolder="" spacerfilepath="" refreshlocal="TRUE" autouploadfiles="FALSE" maintainsyncinfo="TRUE" rewritedocrellinks="FALSE" cache="FALSE" httpaddress="http://mazrim:8040/" relativeTo="DOCUMENT" caseSensitiveLinks="FALSE" curserver="appserver"/>
+<remoteinfo accesstype="none"/>
+<designnotes usedesignnotes="TRUE" sharedesignnotes="TRUE"/>
+<sitemap homepage="D:\WebDesign\addressbook\index.html" pagesperrow="200" columnwidth="125" showdependentfiles="FALSE" showpagetitles="FALSE" showhiddenfiles="FALSE"/>
+<fileviewcolumns sharecolumns="TRUE">
+    <column name="Local Files" align="left" show="TRUE" share="FALSE" builtin="TRUE" localwidth="60" remotewidth="180" />
+    <column name="Notes" align="center" show="FALSE" share="FALSE" builtin="TRUE" localwidth="36" remotewidth="36" />
+    <column name="Size" align="right" show="TRUE" share="FALSE" builtin="TRUE" localwidth="-2" remotewidth="-2" />
+    <column name="Type" align="left" show="TRUE" share="FALSE" builtin="TRUE" localwidth="60" remotewidth="60" />
+    <column name="Modified" align="left" show="TRUE" share="FALSE" builtin="TRUE" localwidth="102" remotewidth="102" />
+    <column name="Checked Out By" align="left" show="FALSE" share="FALSE" builtin="TRUE" localwidth="-1" remotewidth="-1" />
+</fileviewcolumns>
+<appserverinfo servermodel="PHP MySQL" urlprefix="http://mazrim:8040/" connectionsmigrated="FALSE" serverobjectsversion="1" defaultdoctype="HTML" accesstype="lan" remoteroot="Z:/public_html/xaraya/modules/addressbook/" refreshremote="TRUE" testsvrbinaccesstype="none"/>
+<cloaking enabled="TRUE" patterns="TRUE">
+    <cloakedfolder folder="forum/"/>
+    <cloakedfolder folder="modules/addressbook/xaradmin/CVS/"/>
+    <cloakedfolder folder="modules/addressbook/xartemplates/CVS/"/>
+    <cloakedfolder folder="modules/addressbook/xartemplates/includes/CVS/"/>
+    <cloakedfolder folder="modules/junglelib/CVS/"/>
+    <cloakedfolder folder="MT/"/>
+    <cloakedpattern pattern=".png"/>
+    <cloakedpattern pattern=".fla"/>
+    <cloakedpattern pattern=".cvsignore"/>
+    <cloakedpattern pattern=".mt-attrs"/>
+</cloaking>
+<contributorintegration enabled="FALSE"/>
+</site>

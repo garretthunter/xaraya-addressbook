@@ -1,0 +1,5 @@
+<xar:if condition="!empty($abExceptions['abInfoMsg'])">
+<xar:foreach in="$abExceptions['abInfoMsg']" value="$infoMsg">
+  #$infoMsg['text']#<br />
+</xar:foreach>
+</xar:if>
