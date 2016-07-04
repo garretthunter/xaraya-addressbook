@@ -10,7 +10,7 @@
  * @link http://www.xaraya.com
  *
  * @subpackage AddressBook Module
- * @author Garrett Hunter <garrett@blacktower.com>
+ * @author Garrett Hunter <garrett.hunter@blacktower.com>
  * Based on pnAddressBook by Thomas Smiatek <thomas@smiatek.com>
  */
 
@@ -18,7 +18,7 @@
  * Retrieves a two dimensional array consiting of a key=>value pair
  * from the tablename pass via args. Used to populate SELECT dropdowns
  *
- * @author Garrett Hunter <garrett@blacktower.com>
+ * @author Garrett Hunter <garrett.hunter@blacktower.com>
  * @access public
  * @param args['tablename'] string
  * @return arrItems array
