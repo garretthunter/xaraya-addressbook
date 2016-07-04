@@ -10,7 +10,7 @@
  * @link http://www.xaraya.com
  *
  * @subpackage AddressBook Module
- * @author Garrett Hunter <garrett@blacktower.com>
+ * @author Garrett Hunter <garrett.hunter@blacktower.com>
  * Based on pnAddressBook by Thomas Smiatek <thomas@smiatek.com>
  */
 
